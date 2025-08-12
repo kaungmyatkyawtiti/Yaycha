@@ -1,6 +1,7 @@
 interface ListProp {
   children: React.ReactNode;
 }
+
 export default function List({
   children
 }: ListProp) {

@@ -1,10 +1,13 @@
-import { useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import type { InferType } from 'yup'
+import { useContext } from 'react';
+import ThemedContext from './ThemedContext';
+import { log } from './utils/logger';
 
 interface FormProps {
-  onAdd: (content, name) => void;
+  onAdd: (content: string, name: string) => void;
 }
 
 const yaychaSchema = yup
@@ -19,17 +22,24 @@ export type YaychaFormData = InferType<typeof yaychaSchema>;
 export default function Form({
   onAdd,
 }: FormProps) {
+  const { mode, setMode } = useContext(ThemedContext);
+
   const {
     register,
+    control,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<YaychaFormData>({
+    defaultValues: {
+      content: '',
+      name: '',
+    },
     resolver: yupResolver(yaychaSchema),
   });
 
   const onSubmit = (data: YaychaFormData) => {
-    console.log(data);
+    log(data);
     onAdd(data.content, data.name);
     reset();
     if (document.activeElement instanceof HTMLElement) {
@@ -46,10 +56,23 @@ export default function Form({
         gap: 3,
         padding: 10,
         borderRadius: 6,
-        background: "#def",
-        marginBottom: 16,
+        background: mode === "dark" ? "#555" : "#def", marginBottom: 16,
       }}
     >
+      {/* <Controller */}
+      {/*   control={control} */}
+      {/*   name="content" */}
+      {/*   render={({ field }) => ( */}
+      {/*     <input */}
+      {/*       {...field} */}
+      {/*       type="text" */}
+      {/*       placeholder="Content" */}
+      {/*       style={{ */}
+      {/*         padding: 10, */}
+      {/*       }} */}
+      {/*     /> */}
+      {/*   )} */}
+      {/* /> */}
       <input
         {...register("content")}
         type="text"
@@ -60,8 +83,24 @@ export default function Form({
       />
       {
         errors.content &&
-        <small style={{ color: "red" }}>{errors.content?.message}</small>
+        <small style={{ color: "red" }}>
+          {errors.content?.message}
+        </small>
       }
+      {/* <Controller */}
+      {/*   control={control} */}
+      {/*   name="name" */}
+      {/*   render={({ field }) => ( */}
+      {/*     <input */}
+      {/*       {...field} */}
+      {/*       type="text" */}
+      {/*       placeholder="Name" */}
+      {/*       style={{ */}
+      {/*         padding: 10, */}
+      {/*       }} */}
+      {/*     /> */}
+      {/*   )} */}
+      {/* /> */}
       <input
         {...register("name")}
         type="text"
@@ -72,7 +111,9 @@ export default function Form({
       />
       {
         errors.name &&
-        <small style={{ color: "red" }}>{errors.name?.message}</small>
+        <small style={{ color: "red" }}>
+          {errors.name?.message}
+        </small>
       }
       <button
         type='submit'

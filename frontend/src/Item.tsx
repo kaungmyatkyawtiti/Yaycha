@@ -21,11 +21,16 @@ export default function Item({
     >
       <span>
         <small>{item.content}</small>
-        <b>{item.name}</b>
+        <b style={{ color: "cornflowerblue" }}> {item.name}</b>
       </span>
       <button
         type="button"
-        onClick={() => onDelete(item.id)}>
+        onClick={() => onDelete(item.id)}
+        style={{
+          background: "red",
+          color: "white",
+          border: "0 none",
+        }}>
         Delete
       </button>
     </li>
