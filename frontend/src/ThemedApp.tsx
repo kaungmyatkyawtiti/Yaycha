@@ -31,7 +31,7 @@ export default function ThemedApp() {
             height: 36,
             borderRadius: "50%",
             border: "none",
-            background: mode === "dark" ? "#121212" : "#f5f5f5", // soft black / light gray
+            background: mode === "dark" ? "#121212" : "#f5f5f5",
             color: mode === "dark" ? "white" : "black",
             cursor: "pointer",
           }}

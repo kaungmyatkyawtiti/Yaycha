@@ -12,7 +12,7 @@ const mockData: Yaycha[] = [
   { id: uuidv4(), content: "Yay, interesting.", name: "Chris" },
 ]
 
-function App() {
+export default function App() {
   const [data, setData] = useState(mockData);
   const [showForm, setShowForm] = useState(false);
 
@@ -91,5 +91,3 @@ function App() {
     </div>
   )
 }
-
-export default App
