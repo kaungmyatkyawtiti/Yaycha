@@ -22,7 +22,7 @@ export type YaychaFormData = InferType<typeof yaychaSchema>;
 export default function Form({
   onAdd,
 }: FormProps) {
-  const { mode, setMode } = useContext(ThemedContext);
+  const { mode } = useContext(ThemedContext);
 
   const {
     register,
@@ -53,6 +53,7 @@ export default function Form({
       style={{
         display: "flex",
         flexDirection: "column",
+        margin: 15,
         gap: 3,
         padding: 10,
         borderRadius: 6,
@@ -73,6 +74,18 @@ export default function Form({
       {/*     /> */}
       {/*   )} */}
       {/* /> */}
+      <div style={{
+        textAlign: "center",
+        fontSize: 18,
+        fontWeight: "bold",
+        marginBottom: 12,
+        paddingBottom: 8,
+        borderBottom: mode === "dark"
+          ? "1px solid rgba(255,255,255,0.2)"
+          : "1px solid rgba(0,0,0,0.1)"
+      }}>
+        Add New Content
+      </div>
       <input
         {...register("content")}
         type="text"
@@ -89,8 +102,7 @@ export default function Form({
       }
       {/* <Controller */}
       {/*   control={control} */}
-      {/*   name="name" */}
-      {/*   render={({ field }) => ( */}
+      {/*   name="name" */} {/*   render={({ field }) => ( */}
       {/*     <input */}
       {/*       {...field} */}
       {/*       type="text" */}
