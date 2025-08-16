@@ -60,20 +60,6 @@ export default function Form({
         background: mode === "dark" ? "#555" : "#def", marginBottom: 16,
       }}
     >
-      {/* <Controller */}
-      {/*   control={control} */}
-      {/*   name="content" */}
-      {/*   render={({ field }) => ( */}
-      {/*     <input */}
-      {/*       {...field} */}
-      {/*       type="text" */}
-      {/*       placeholder="Content" */}
-      {/*       style={{ */}
-      {/*         padding: 10, */}
-      {/*       }} */}
-      {/*     /> */}
-      {/*   )} */}
-      {/* /> */}
       <div style={{
         textAlign: "center",
         fontSize: 18,
